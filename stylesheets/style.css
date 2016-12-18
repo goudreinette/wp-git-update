@@ -1,0 +1,81 @@
+.admin {
+    padding-left: 25px;
+    margin-top: 40px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header h1 {
+    margin-right: 30px;
+}
+
+header label {
+    margin-right: 10px;
+}
+
+header button {
+    margin-left: auto;
+    margin-right: 80px;
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 2px;
+    border: none;
+}
+
+/**
+ Plugins Table
+ */
+.plugins {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.plugins tbody {
+    width: 100%
+}
+
+.plugins thead, .plugins .plugin {
+    width: calc(100% - 100px);
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background-color: white;
+    box-shadow: 0 1px 0 #ccc;
+    justify-content: center;
+}
+
+.plugins thead th {
+    text-align: left;
+}
+
+.plugins thead th, .plugins .plugin td {
+    width: 100%;
+}
+
+th.repository, td.repository {
+    width: 200px;
+}
+
+/**
+ Plugins Header
+ */
+.plugins thead tr {
+    display: flex;
+    width: 100%;
+}
+
+/**
+ Plugins Body
+ */
+.plugin input.repository {
+    border: 1px solid lightgrey;
+    height: 28px;
+}
