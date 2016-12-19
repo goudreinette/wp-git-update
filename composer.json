@@ -9,7 +9,10 @@
     ],
     "require": {
         "mustache/mustache": "2.*.*",
-        "reinvdwoerd/utils": "dev-master"
+        "reinvdwoerd/utils": "dev-master",
+        "guzzlehttp/guzzle": "^6.2",
+        "rmccue/requests": "^1.7",
+        "composer/composer": "^1.2"
     },
     "autoload": {
         "psr-4": {"GitUpdate\\": "source/"}

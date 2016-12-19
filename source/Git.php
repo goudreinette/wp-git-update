@@ -1,5 +1,7 @@
 <?php namespace GitUpdate;
 
+use Requests;
+
 class Git
 {
     static function filterGit($plugins)
@@ -20,7 +22,9 @@ class Git
 
     static function lastCommitHash($repo)
     {
-        $commits = file_get_contents("https://api.github.com/repos/$repo[user]/$repo[repo]/commits");
-        return json_decode($commits)[0];
+        $res = Requests::get("https://api.github.com/repos/$repo[user]/$repo[repo]/commits"
+            , ['Accept' => 'application/json']);
+
+        return json_decode($res->body, true)[0]['sha'];
     }
 }

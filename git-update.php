@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: GitUpdate
-Plugin URI: https://github.com/reinvdwoerd/git-update
+Plugin URI: https://github.com/reinvdwoerd/wp-git-update
 Description:
 Version: 1.0
 Author: reinvdwoerd
