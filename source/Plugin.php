@@ -1,13 +1,12 @@
 <?php namespace GitUpdate;
 
-use Utils\MetaPersist;
+use Utils\Persist;
+use Utils\Utils;
 
 class Plugin
 {
-    use MetaPersist;
-    static $key = 'git-update-plugin';
+    use Persist;
 
-    private $id;
     public $name;
     public $path;
     public $repository;
@@ -15,30 +14,6 @@ class Plugin
     public $lastUpdated;
     public $updateAvailable;
 
-    static function all()
-    {
-        $all = array_map(function ($pluginArray) {
-            $plugin = new Plugin();
-
-        }, get_plugins());
-
-    }
-
-    /**
-     * @param $plugins Plugin[]
-     * @return array
-     */
-    static function usesGit($plugins)
-    {
-        return array_filter($plugins, function (Plugin $plugin) {
-            return strpos($plugin->repository, 'git') !== false;
-        });
-    }
-
-    function defaults()
-    {
-
-    }
 
     function update()
     {
@@ -53,5 +28,33 @@ class Plugin
     function overwrite()
     {
 
+    }
+
+
+    /**
+     * @param $plugins Plugin[]
+     * @return array
+     */
+    static function usesGit($plugins)
+    {
+        return array_filter($plugins, function (Plugin $plugin) {
+            return strpos($plugin->repository, 'git') !== false;
+        });
+    }
+
+    static function createForNew()
+    {
+        $existing  = self::all();
+        $installed = get_plugins();
+        $new       = array_filter($installed, function ($plugin) use ($existing) {
+            return !in_array($plugin['PluginURI'], Utils::array_pluck($existing, 'repository'));
+        });
+
+        foreach ($new as $name => $plugin) {
+            $gitPlugin             = new Plugin();
+            $gitPlugin->repository = $plugin['PluginURI'];
+            $gitPlugin->branch     = 'master';
+            $gitPlugin->name       = $plugin['Name'];
+        }
     }
 }

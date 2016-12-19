@@ -29,7 +29,7 @@ class Admin
 
     function pluginFixtures()
     {
-        $plugins = Plugin::all();
+        $plugins = Plugin::createForNew();
 
         return [
             ['name' => 'WooEvents', 'repository' => 'https://github.com/reinvdwoerd/woo-events.git', 'lastUpdated' => human_time_diff(strtotime('20-12-2016')), 'branches' => ['master', 'oo']],
