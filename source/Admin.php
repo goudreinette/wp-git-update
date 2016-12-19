@@ -22,11 +22,19 @@ class Admin
     {
         $this->view->enqueueStyle('style');
         $this->view->render('admin', [
-            'plugins' => [
-                ['name' => 'WooEvents', 'repository' => 'https://github.com/reinvdwoerd/woo-events.git', 'lastUpdated' => human_time_diff(strtotime('20-12-2016')), 'branches' => ['master', 'oo']],
-                ['name' => 'AddToCart', 'repository' => 'https://github.com/reinvdwoerd/add-to-cart.git', 'lastUpdated' => human_time_diff(strtotime('16-12-2016')), 'branches' => ['master']]
-            ]
+            'plugins'  => $this->pluginFixtures(),
+            'settings' => (array)new Settings()
         ]);
+    }
+
+    function pluginFixtures()
+    {
+        $plugins = Plugin::all();
+
+        return [
+            ['name' => 'WooEvents', 'repository' => 'https://github.com/reinvdwoerd/woo-events.git', 'lastUpdated' => human_time_diff(strtotime('20-12-2016')), 'branches' => ['master', 'oo']],
+            ['name' => 'AddToCart', 'repository' => 'https://github.com/reinvdwoerd/add-to-cart.git', 'lastUpdated' => human_time_diff(strtotime('16-12-2016')), 'branches' => ['master']]
+        ];
     }
 
     function save()

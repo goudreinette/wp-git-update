@@ -1,25 +1,12 @@
 <?php namespace GitUpdate;
 
 
+use Utils\OptionPersist;
+
 class Settings
 {
-    static function getPluginSettings()
-    {
-        
-    }
+    use OptionPersist;
+    static $key = 'git-update-settings';
 
-    static function updatePluginSettings()
-    {
-
-    }
-
-    static function getInterval()
-    {
-
-    }
-
-    static function updateInterval()
-    {
-
-    }
+    public $autoUpdate = false;
 }
