@@ -30,7 +30,7 @@ class LastUpdate
      * @param $plugins array
      * @return array
      */
-    static function availableUpdates($plugins)
+    static function filterUpdateAvailable($plugins)
     {
         return self::filterUsingLastUpdates($plugins, function ($relativePath, $pluginData, $lastUpdates) {
             $repo       = Github::parseRepoUri($pluginData['PluginURI']);

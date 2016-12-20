@@ -1,20 +1,21 @@
 {
-    "name": "reinvdwoerd/git-update",
-    "version": "1.0",
-    "authors": [
-        {
-            "name": "reinvdwoerd",
-            "email": "reinvanderwoerd@me.com"
-        }
-    ],
-    "require": {
-        "mustache/mustache": "2.*.*",
-        "reinvdwoerd/utils": "dev-master",
-        "guzzlehttp/guzzle": "^6.2",
-        "rmccue/requests": "^1.7",
-        "composer/composer": "^1.2"
-    },
-    "autoload": {
-        "psr-4": {"GitUpdate\\": "source/"}
+  "name": "reinvdwoerd/git-update",
+  "version": "1.0",
+  "authors": [
+    {
+      "name": "reinvdwoerd",
+      "email": "reinvanderwoerd@me.com"
     }
+  ],
+  "require": {
+    "mustache/mustache": "2.*.*",
+    "reinvdwoerd/utils": "dev-master",
+    "rmccue/requests": "^1.7",
+    "composer/composer": "^1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "GitUpdate\\": "source/"
+    }
+  }
 }

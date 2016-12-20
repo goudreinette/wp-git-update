@@ -1,5 +1,7 @@
 <?php namespace GitUpdate;
 
+use Utils\Utils;
+
 /**
  * All paths are absolute.
  */
@@ -21,10 +23,39 @@ class Files
     }
 
 
-    static function extract($fullpath)
+    static function extract($absolutePath)
     {
         $zip = new \ZipArchive;
-        $zip->open("$fullpath.zip");
-        $zip->extractTo("$fullpath-temp");
+        $zip->open("$absolutePath.zip");
+        $zip->extractTo(self::pluginsDir());
+        unlink("$absolutePath.zip");
+    }
+
+    /**
+     *TODO: Fix deze module
+     */
+    static function cleanup($absolutePath)
+    {
+        try {
+            self::removeDirectory($absolutePath);
+            rename("$absolutePath-master", $absolutePath);
+        } catch (\Exception $e) {
+        }
+    }
+
+
+    static function removeDirectory($path)
+    {
+        if (is_link($path)) {
+            unlink($path);
+        } else if (is_dir($path)) {
+            $files = glob($path . '/*');
+            foreach ($files as $file) {
+                self::removeDirectory($file);
+            }
+            rmdir($path);
+        } else {
+            unlink($path);
+        }
     }
 }

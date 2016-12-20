@@ -22,23 +22,22 @@ class Github
 
     static function lastCommitsUri($user, $repo)
     {
-        return "https://github.com/$user/$repo/archive/master.zip";
+        return "https://api.github.com/repos/$user/$repo/commits";
     }
 
     static function archiveUri($user, $repo)
     {
-        return "https://api.github.com/repos/$user/$repo/commits";
+        return "https://github.com/$user/$repo/archive/master.zip";
     }
 
     static function lastCommitHash($repo)
     {
-        $res = Requests::get(self::archiveUri($repo['user'], $repo['repo']), ['Accept' => 'application/json']);
+        $res = Requests::get(self::lastCommitsUri($repo['user'], $repo['repo']), ['Accept' => 'application/json']);
         return json_decode($res->body, true)[0]['sha'];
     }
 
-    static function downloadArchive($repo, $relativePath)
+    static function downloadArchive($repo, $absolutePath)
     {
-        $absolutePath = Files::pluginAbsDir($relativePath);
         file_put_contents("$absolutePath.zip", fopen(self::archiveUri($repo['user'], $repo['repo']), 'r'));
     }
 }

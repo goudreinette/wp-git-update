@@ -4,15 +4,26 @@ use Utils\View;
 
 class Admin
 {
+    /**
+     * @var Updates
+     */
+    private $updates;
+
     function __construct(View $view)
     {
         $this->view = $view;
-        add_action('wp_ajax_git_update_now', self::class . '::updateNow');
+        add_action('admin_post_git_update', [$this, 'updateNow']);
     }
 
-    function showNotice($name)
+    function showNotice($relativePath, $pluginData, $updates)
     {
-        $this->view->render('notice', ['name' => $name]);
+        $this->updates = $updates;
+        $this->view->render('notice', [
+            'postUrl'      => admin_url('admin-post.php'),
+            'relativePath' => $relativePath,
+            'name'         => $pluginData['Name'],
+            'repoUri'      => $pluginData['PluginURI']
+        ]);
     }
 
     function showUpdate()
@@ -22,6 +33,7 @@ class Admin
 
     function updateNow()
     {
-
+        $this->updates->update($_POST['repoUri'], $_POST['relativePath']);
+        wp_redirect(admin_url());
     }
 }
