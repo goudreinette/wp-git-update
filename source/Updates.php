@@ -3,21 +3,22 @@
 
 class Updates
 {
-    static function check()
+    function __construct(Admin $admin)
     {
-        self::setInitialCommitHash();
-        self::showUpdateNotices();
+        $this->admin = $admin;
+        $this->setInitialCommitHash();
+        $this->showUpdateNotices();
     }
 
-    static function showUpdateNotices()
+    function showUpdateNotices()
     {
         $plugins = Github::filterUsesGit(get_plugins());
         foreach (LastUpdate::availableUpdates($plugins) as $relativePath => $pluginData) {
-            Admin::showNotice($pluginData['Name']);
+            $this->admin->showNotice($pluginData['Name']);
         }
     }
 
-    static function setInitialCommitHash()
+    function setInitialCommitHash()
     {
         $usesGit    = Github::filterUsesGit(get_plugins());
         $newPlugins = LastUpdate::notUpdatedYet($usesGit);
@@ -28,7 +29,7 @@ class Updates
         }
     }
 
-    static function update($repo, $relativePath)
+    function update($repo, $relativePath)
     {
         Github::downloadArchive($repo, $relativePath);
         Files::extract($relativePath);

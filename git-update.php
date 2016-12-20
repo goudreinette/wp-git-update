@@ -40,8 +40,8 @@ add_action('init', function () {
 });
 
 add_action('admin_init', function () use ($view) {
-    Updates::check();
-    Admin::init();
+    $admin   = new Admin($view);
+    $updates = new Updates($admin);
 });
 
 /**
