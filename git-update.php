@@ -41,7 +41,7 @@ add_action('init', function () {
 });
 
 add_action('admin_init', function () use ($view) {
-    Updater::check();
+    Updates::check();
 });
 
 /**
