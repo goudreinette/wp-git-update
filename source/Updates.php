@@ -5,24 +5,33 @@ class Updates
 {
     static function check()
     {
-        self::setLastUpdateToCurrentForNew();
+        self::setInitialCommitHash();
+        self::showUpdateNotices();
     }
 
-    static function setLastUpdateToCurrentForNew()
+    static function showUpdateNotices()
     {
-        $newPlugins = LastUpdate::withoutUpdate(get_plugins());
-        $usesGit    = Github::filterUsesGit($newPlugins);
-        foreach ($usesGit as $relativePath => $pluginData) {
+        $plugins = Github::filterUsesGit(get_plugins());
+        foreach (LastUpdate::availableUpdates($plugins) as $relativePath => $pluginData) {
+            Admin::showNotice($pluginData['Name']);
+        }
+    }
+
+    static function setInitialCommitHash()
+    {
+        $usesGit    = Github::filterUsesGit(get_plugins());
+        $newPlugins = LastUpdate::notUpdatedYet($usesGit);
+        foreach ($newPlugins as $relativePath => $pluginData) {
             $repo       = Github::parseRepoUri($pluginData['PluginURI']);
             $lastCommit = Github::lastCommitHash($repo);
             LastUpdate::set($relativePath, $lastCommit);
         }
     }
 
-    static function update($repo, $dir)
+    static function update($repo, $relativePath)
     {
-        Github::downloadArchive($repo, $dir);
-        Files::extract($dir);
-        Composer::install($dir);
+        Github::downloadArchive($repo, $relativePath);
+        Files::extract($relativePath);
+        Composer::install($relativePath);
     }
 }

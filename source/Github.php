@@ -36,8 +36,9 @@ class Github
         return json_decode($res->body, true)[0]['sha'];
     }
 
-    static function downloadArchive($repo, $path)
+    static function downloadArchive($repo, $relativePath)
     {
-        file_put_contents("$path.zip", fopen(self::archiveUri($repo['user'], $repo['repo']), 'r'));
+        $absolutePath = Files::pluginAbsDir($relativePath);
+        file_put_contents("$absolutePath.zip", fopen(self::archiveUri($repo['user'], $repo['repo']), 'r'));
     }
 }

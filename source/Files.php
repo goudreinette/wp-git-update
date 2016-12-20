@@ -5,9 +5,9 @@
  */
 class Files
 {
-    static function pluginRelativeDir($file)
+    static function pluginDirname($relativePath)
     {
-        return explode('/', $file)[0];
+        return explode('/', $relativePath)[0];
     }
 
     static function pluginsDir()
@@ -15,11 +15,11 @@ class Files
         return wp_normalize_path(WP_PLUGIN_DIR);
     }
 
-    static function pluginAbsDir($pluginMainFile)
+    static function pluginAbsDir($relativePath)
     {
-        return self::pluginsDir() . '/' . self::pluginRelativeDir($pluginMainFile);
+        return self::pluginsDir() . '/' . self::pluginDirname($relativePath);
     }
-    
+
 
     static function extract($fullpath)
     {

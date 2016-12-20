@@ -30,7 +30,6 @@ require __DIR__ . '/vendor/autoload.php';
 use Utils\View;
 
 $view = new View($root);
-//new Admin($view);
 
 
 /**
@@ -42,6 +41,7 @@ add_action('init', function () {
 
 add_action('admin_init', function () use ($view) {
     Updates::check();
+    Admin::init();
 });
 
 /**
