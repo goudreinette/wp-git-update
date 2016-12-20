@@ -1,31 +1,39 @@
 <?php namespace GitUpdate;
 
 /**
- * lastUpdates array is 'relativePath' => 'commitHash'
+ * lastUpdates: ['relativePath' => 'commitHash']
  */
 class LastUpdate
 {
+    static $key = 'git-update-last-update';
+
     static function ofPlugin($relativePath)
     {
-        return self::getLastUpdates()[$relativePath];
+        return self::all()[$relativePath];
     }
 
     static function all()
     {
-        get_option(Updates::$key, []);
+        return get_option(self::$key, []);
     }
 
-    static function updateAll($array)
+    static function updateAll($lastUpdates)
     {
-        update_option(Updates::$key, $array);
+        update_option(self::$key, $lastUpdates);
     }
 
-    static function newPlugins()
+    static function withoutUpdate($plugins)
     {
         $lastUpdates = self::all();
-        $all         = get_plugins();
-        return array_filter($all, function ($relativePath) use ($lastUpdates) {
+        return array_filter($plugins, function ($relativePath) use ($lastUpdates) {
             return !in_array($relativePath, array_keys($lastUpdates));
         }, ARRAY_FILTER_USE_KEY);
+    }
+
+    static function set($relativePath, $commitHash)
+    {
+        $lastUpdates                = self::all();
+        $lastUpdates[$relativePath] = $commitHash;
+        self::updateAll($lastUpdates);
     }
 }

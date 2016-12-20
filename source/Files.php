@@ -17,8 +17,9 @@ class Files
 
     static function pluginAbsDir($pluginMainFile)
     {
-        return self::pluginsDir() . self::pluginRelativeDir($pluginMainFile);
+        return self::pluginsDir() . '/' . self::pluginRelativeDir($pluginMainFile);
     }
+    
 
     static function extract($fullpath)
     {

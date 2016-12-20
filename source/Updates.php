@@ -3,30 +3,26 @@
 
 class Updates
 {
-    static $key = 'git-update-last-update';
-
     static function check()
     {
-        $plugins     = get_plugins();
-        $gitPlugins  = Github::filterGit($plugins);
-        $lastUpdates = LastUpdate::getLastUpdates();
+        self::setLastUpdateToCurrentForNew();
+    }
 
-        foreach ($gitPlugins as $file => $data) {
-            $repo       = Github::parseRepoUri($data['PluginURI']);
+    static function setLastUpdateToCurrentForNew()
+    {
+        $newPlugins = LastUpdate::withoutUpdate(get_plugins());
+        $usesGit    = Github::filterUsesGit($newPlugins);
+        foreach ($usesGit as $relativePath => $pluginData) {
+            $repo       = Github::parseRepoUri($pluginData['PluginURI']);
             $lastCommit = Github::lastCommitHash($repo);
-            $lastUpdate = $lastUpdates[$file];
-
-            if ($lastUpdate != $lastCommit) {
-                self::update($repo, Files::pluginAbsDir($file));
-            }
+            LastUpdate::set($relativePath, $lastCommit);
         }
     }
 
     static function update($repo, $dir)
     {
-        Github::downloadArchive($repo, $fullpath);
-        Files::extract($fullpath);
-        Composer::install("$fullpath");
+        Github::downloadArchive($repo, $dir);
+        Files::extract($dir);
+        Composer::install($dir);
     }
-
 }

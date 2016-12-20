@@ -4,7 +4,7 @@ use Requests;
 
 class Github
 {
-    static function filterGit($plugins)
+    static function filterUsesGit($plugins)
     {
         return array_filter($plugins, function ($plugin) {
             return strpos($plugin['PluginURI'], 'github') !== false;
