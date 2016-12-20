@@ -31,6 +31,9 @@ class Admin
 
     }
 
+    /**
+     * TODO: Mooie plek om een exception te vangen en tonen.
+     */
     function updateNow()
     {
         $this->updates->update($_POST['repoUri'], $_POST['relativePath']);
