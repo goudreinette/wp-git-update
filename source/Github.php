@@ -29,7 +29,7 @@ class Github
 
     static function downloadArchive($repo, $absolutePath)
     {
-        $archiveUri = "https://github.com/$user/$repo/archive/master.zip";
+        $archiveUri = "https://github.com/$repo[user]/$repo[repo]/archive/master.zip";
         file_put_contents("$absolutePath.zip", fopen($archiveUri, 'r'));
     }
 }

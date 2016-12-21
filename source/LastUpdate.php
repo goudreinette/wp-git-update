@@ -7,19 +7,14 @@ class LastUpdate
 {
     static $key = 'git-update-last-update';
 
-    static function ofPlugin($relativePath)
-    {
-        return self::all()[$relativePath];
-    }
-
-    static function all()
+    static function get()
     {
         return get_option(self::$key, []);
     }
 
     static function filterUsingLastUpdates($array, $fn)
     {
-        $lastUpdates = self::all();
+        $lastUpdates = self::get();
         return array_filter($array, function ($value, $key) use ($fn, $lastUpdates) {
             return $fn($key, $value, $lastUpdates);
         }, ARRAY_FILTER_USE_BOTH);
@@ -48,7 +43,7 @@ class LastUpdate
 
     static function set($relativePath, $commitHash)
     {
-        $lastUpdates                = self::all();
+        $lastUpdates                = self::get();
         $lastUpdates[$relativePath] = $commitHash;
         update_option(self::$key, $lastUpdates);
     }

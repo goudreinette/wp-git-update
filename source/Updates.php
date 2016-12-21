@@ -6,6 +6,7 @@ class Updates
     function __construct(Admin $admin)
     {
         $this->admin = $admin;
+        $this->admin->connect($this);
         $this->setInitialCommitHash();
         $this->showUpdateNotices();
     }
@@ -13,7 +14,7 @@ class Updates
     function showUpdateNotices()
     {
         foreach (Plugins::updateAvailable() as $relativePath => $pluginData) {
-            $this->admin->showNotice($relativePath, $pluginData, $this);
+            $this->admin->showNotice($relativePath, $pluginData);
         }
     }
 
@@ -25,7 +26,6 @@ class Updates
             LastUpdate::set($relativePath, $lastCommit);
         }
     }
-
 
     function update($repoUri, $relativePath)
     {

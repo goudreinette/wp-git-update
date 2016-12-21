@@ -3,6 +3,16 @@
 
 class Plugins
 {
+    static function new()
+    {
+        return LastUpdate::notUpdatedYet(self::relevant());
+    }
+
+    static function updateAvailable()
+    {
+        return LastUpdate::filterUpdateAvailable(self::relevant());
+    }
+
     static function excludeSelf($plugins)
     {
         return array_filter($plugins, function ($relativePath) {
@@ -10,23 +20,13 @@ class Plugins
         }, ARRAY_FILTER_USE_KEY);
     }
 
-    static function all()
+    static function relevant()
     {
         $all                 = get_plugins();
         $activeRelativePaths = get_option('active_plugins');
-        $active              = array_intersect_key($all, $activeRelativePaths);
+        $active              = array_intersect_key($all, array_flip($activeRelativePaths));
         $withoutSelf         = self::excludeSelf($active);
         $usesGit             = Github::filterUsesGit($withoutSelf);
         return $usesGit;
-    }
-
-    static function new()
-    {
-        return LastUpdate::notUpdatedYet(self::all());
-    }
-
-    static function updateAvailable()
-    {
-        return LastUpdate::filterUpdateAvailable(self::all());
     }
 }

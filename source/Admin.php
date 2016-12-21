@@ -15,20 +15,19 @@ class Admin
         add_action('admin_post_git_update', [$this, 'updateNow']);
     }
 
-    function showNotice($relativePath, $pluginData, $updates)
+    function connect($updates)
     {
         $this->updates = $updates;
+    }
+
+    function showNotice($relativePath, $pluginData)
+    {
         $this->view->render('notice', [
             'postUrl'      => admin_url('admin-post.php'),
             'relativePath' => $relativePath,
             'name'         => $pluginData['Name'],
             'repoUri'      => $pluginData['PluginURI']
         ]);
-    }
-
-    function showUpdate()
-    {
-
     }
 
     /**
