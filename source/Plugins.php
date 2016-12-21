@@ -3,7 +3,7 @@
 
 class Plugins
 {
-    static function new()
+    static function withoutCommitHash()
     {
         return LastUpdate::filterUsingLastUpdates(self::relevant(), function ($relativePath, $pluginData, $lastUpdates) {
             return !in_array($relativePath, array_keys($lastUpdates));

@@ -20,7 +20,7 @@ class Updates
 
     function setInitialCommitHash()
     {
-        foreach (Plugins::new() as $relativePath => $pluginData) {
+        foreach (Plugins::withoutCommitHash() as $relativePath => $pluginData) {
             $repo       = Github::parseRepoUri($pluginData['PluginURI']);
             $lastCommit = Github::lastCommitHash($repo);
             LastUpdate::set($relativePath, $lastCommit);
