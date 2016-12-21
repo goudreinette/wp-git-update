@@ -1,6 +1,5 @@
 <?php namespace GitUpdate;
 
-use bookin\composer\api\Composer;
 
 class Updates
 {
@@ -33,11 +32,11 @@ class Updates
         $repo           = Github::parseRepoUri($repoUri);
         $lastCommitHash = Github::lastCommitHash($repo);
         $absolutePath   = Files::pluginAbsDir($relativePath);
-        $composer       = Composer::getInstance("$absolutePath-master/composer.json", "$absolutePath-master");
+        $composer       = new ComposerAPI("$absolutePath-master");
 
         Github::downloadArchive($repo, $absolutePath);
         Files::extract($absolutePath);
-        $composer::runCommand('install');
+        $composer->install();
         Files::cleanup($absolutePath);
         LastUpdate::set($relativePath, $lastCommitHash);
     }
