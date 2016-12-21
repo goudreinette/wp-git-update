@@ -216,7 +216,7 @@ class ComposerAPI
      * @param OutputInterface $output
      * @return \Symfony\Component\Console\Output\OutputInterface
      */
-    public function require (array $package_names, array $options = null, OutputInterface $output = null)
+    public function composerRequire(array $package_names, array $options = null, OutputInterface $output = null)
     {
         $arguments = [];
 
