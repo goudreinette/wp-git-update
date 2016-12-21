@@ -40,8 +40,13 @@ add_action('init', function () {
 });
 
 add_action('admin_init', function () use ($view) {
-    $admin   = new Admin($view);
-    $updates = new Updates($admin);
+    /**
+     * Only activate during a regular admin request.
+     */
+    if (!is_ajax()) {
+        $admin   = new Admin($view);
+        $updates = new Updates($admin);
+    }
 });
 
 /**
