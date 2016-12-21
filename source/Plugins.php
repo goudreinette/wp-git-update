@@ -1,5 +1,6 @@
 <?php namespace GitUpdate;
 
+use Utils\Utils;
 
 class Plugins
 {
@@ -32,9 +33,9 @@ class Plugins
 
     static function excludeSelf($plugins)
     {
-        return array_filter($plugins, function ($relativePath) {
+        return Utils::array_filter($plugins, function ($relativePath, $pluginData) {
             return strpos($relativePath, 'git-update') === false;
-        }, ARRAY_FILTER_USE_KEY);
+        });
     }
 
 

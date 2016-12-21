@@ -1,5 +1,7 @@
 <?php namespace GitUpdate;
 
+use Utils\Utils;
+
 /**
  * lastUpdates: ['relativePath' => 'commitHash']
  */
@@ -22,8 +24,8 @@ class LastUpdate
     static function filterUsingLastUpdates($array, $fn)
     {
         $lastUpdates = self::get();
-        return array_filter($array, function ($value, $key) use ($fn, $lastUpdates) {
+        return Utils::array_filter($array, function ($key, $value) use ($fn, $lastUpdates) {
             return $fn($key, $value, $lastUpdates);
-        }, ARRAY_FILTER_USE_BOTH);
+        });
     }
 }
