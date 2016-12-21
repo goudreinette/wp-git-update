@@ -30,13 +30,15 @@ class Updates
 
     function update($repoUri, $relativePath)
     {
-        $repo         = Github::parseRepoUri($repoUri);
-        $absolutePath = Files::pluginAbsDir($relativePath);
-        $composer     = Composer::getInstance("$absolutePath-master/composer.json", "$absolutePath-master");
+        $repo           = Github::parseRepoUri($repoUri);
+        $lastCommitHash = Github::lastCommitHash($repo);
+        $absolutePath   = Files::pluginAbsDir($relativePath);
+        $composer       = Composer::getInstance("$absolutePath-master/composer.json", "$absolutePath-master");
 
         Github::downloadArchive($repo, $absolutePath);
         Files::extract($absolutePath);
         $composer::runCommand('install');
         Files::cleanup($absolutePath);
+        LastUpdate::set($relativePath, $lastCommitHash);
     }
 }

@@ -1,0 +1,12 @@
+<div class="notice notice-info is-dismissible git-update-notice">
+    <form action="{{postUrl}}" method="post">
+        <h4>GitUpdate</h4>
+        <main>
+            <p>Plugin update available: <strong>{{name}}</strong></p>
+            <button class="button button-primary" type="submit">Update</button>
+            <input type="hidden" name="action" value="git_update">
+            <input type="hidden" name="relativePath" value="{{relativePath}}">
+            <input type="hidden" name="repoUri" value="{{repoUri}}">
+        </main>
+    </form>
+</div>

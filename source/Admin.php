@@ -30,6 +30,11 @@ class Admin
         ]);
     }
 
+    function showSuccess()
+    {
+
+    }
+
     /**
      * TODO: Mooie plek om een exception te vangen en tonen.
      */
