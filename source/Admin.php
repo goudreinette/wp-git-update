@@ -9,15 +9,15 @@ class Admin
      */
     private $updates;
 
+    function connect($updates)
+    {
+        $this->updates = $updates;
+    }
+
     function __construct(View $view)
     {
         $this->view = $view;
         add_action('admin_post_git_update', [$this, 'updateNow']);
-    }
-
-    function connect($updates)
-    {
-        $this->updates = $updates;
     }
 
     function showNotice($relativePath, $pluginData)
