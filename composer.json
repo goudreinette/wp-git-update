@@ -12,7 +12,7 @@
     "reinvdwoerd/utils": "dev-master",
     "rmccue/requests": "^1.7",
     "composer/composer": "^1.2",
-    "kabachello/composerapi": "^0.3.1"
+    "bookin/composer-api": "@dev"
   },
   "autoload": {
     "psr-4": {

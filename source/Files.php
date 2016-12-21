@@ -36,17 +36,14 @@ class Files
      */
     static function cleanup($absolutePath)
     {
-        try {
-            self::removeDirectory($absolutePath);
-            rename("$absolutePath-master", $absolutePath);
-        } catch (\Exception $e) {
-        }
+        self::removeDirectory($absolutePath);
+        rename("$absolutePath-master", $absolutePath);
     }
 
 
     static function removeDirectory($path)
     {
-        if (is_link($path)) {
+        if (is_link($path) || is_file($path)) {
             unlink($path);
         } else if (is_dir($path)) {
             $files = glob($path . '/*');
@@ -54,8 +51,6 @@ class Files
                 self::removeDirectory($file);
             }
             rmdir($path);
-        } else {
-            unlink($path);
         }
     }
 }
