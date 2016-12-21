@@ -34,7 +34,7 @@ class Updates
 
         Github::downloadArchive($repo, $absolutePath);
         Files::extract($absolutePath);
-//        Composer::install($absolutePath);
+        Composer::install($absolutePath);
         Files::cleanup($absolutePath);
     }
 }

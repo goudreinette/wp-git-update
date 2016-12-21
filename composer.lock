@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7d736cfc459f75fe505498d845a52423",
-    "content-hash": "e3d0f23efa9cbdd8c427ad9efc052c31",
+    "hash": "8da73d85f173a5f44a5a6dc958862465",
+    "content-hash": "a8d15c986af71c77dec8892f1be14796",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -501,6 +501,38 @@
                 "schema"
             ],
             "time": "2016-06-02 10:59:52"
+        },
+        {
+            "name": "kabachello/composerapi",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kabachello/ComposerAPI.git",
+                "reference": "d615f5733984281aa1e5af0a50ab69e4811a2ac5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kabachello/ComposerAPI/zipball/d615f5733984281aa1e5af0a50ab69e4811a2ac5",
+                "reference": "d615f5733984281aa1e5af0a50ab69e4811a2ac5",
+                "shasum": ""
+            },
+            "require": {
+                "composer/composer": "^1.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrej Kabachnik",
+                    "email": "kabachnik@gmail.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "A wrapper for Composer to call its commands programmatically using a simple object oriented API",
+            "time": "2016-10-14 16:27:24"
         },
         {
             "name": "mustache/mustache",

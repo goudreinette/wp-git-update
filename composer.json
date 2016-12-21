@@ -11,7 +11,8 @@
     "mustache/mustache": "2.*.*",
     "reinvdwoerd/utils": "dev-master",
     "rmccue/requests": "^1.7",
-    "composer/composer": "^1.2"
+    "composer/composer": "^1.2",
+    "kabachello/composerapi": "^0.3.1"
   },
   "autoload": {
     "psr-4": {

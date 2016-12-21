@@ -5,12 +5,18 @@ class Plugins
 {
     static function new()
     {
-        return LastUpdate::notUpdatedYet(self::relevant());
+        return LastUpdate::filterUsingLastUpdates(self::relevant(), function ($relativePath, $pluginData, $lastUpdates) {
+            return !in_array($relativePath, array_keys($lastUpdates));
+        });
     }
 
     static function updateAvailable()
     {
-        return LastUpdate::filterUpdateAvailable(self::relevant());
+        return LastUpdate::filterUsingLastUpdates(self::relevant(), function ($relativePath, $pluginData, $lastUpdates) {
+            $repo       = Github::parseRepoUri($pluginData['PluginURI']);
+            $lastCommit = Github::lastCommitHash($repo);
+            return $lastUpdates[$relativePath] != $lastCommit;
+        });
     }
 
     static function excludeSelf($plugins)
