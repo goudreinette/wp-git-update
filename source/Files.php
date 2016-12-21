@@ -31,9 +31,6 @@ class Files
         unlink("$absolutePath.zip");
     }
 
-    /**
-     *TODO: Fix deze module
-     */
     static function cleanup($absolutePath)
     {
         self::removeDirectory($absolutePath);
@@ -41,6 +38,9 @@ class Files
     }
 
 
+    /**
+     *TODO: Packagist?
+     */
     static function removeDirectory($path)
     {
         if (is_link($path) || is_file($path)) {

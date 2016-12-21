@@ -15,7 +15,8 @@ class Plugins
         return LastUpdate::filterUsingLastUpdates(self::relevant(), function ($relativePath, $pluginData, $lastUpdates) {
             $repo       = Github::parseRepoUri($pluginData['PluginURI']);
             $lastCommit = Github::lastCommitHash($repo);
-            return $lastUpdates[$relativePath] != $lastCommit;
+
+            return $lastUpdates[$relativePath] != $lastCommit && $lastCommit != null;
         });
     }
 
