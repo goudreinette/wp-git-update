@@ -24,7 +24,7 @@ class LastUpdate
     static function filterUsingLastUpdates($array, $fn)
     {
         $lastUpdates = self::get();
-        return Utils::array_filter($array, function ($key, $value) use ($fn, $lastUpdates) {
+        return Updates::array_filter($array, function ($key, $value) use ($fn, $lastUpdates) {
             return $fn($key, $value, $lastUpdates);
         });
     }

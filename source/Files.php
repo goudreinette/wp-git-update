@@ -43,14 +43,16 @@ class Files
      */
     static function removeDirectory($path)
     {
-        if (is_link($path) || is_file($path)) {
-            unlink($path);
-        } else if (is_dir($path)) {
-            $files = glob($path . '/*');
+        if (is_dir($path) === true) {
+            $files = array_diff(scandir($path), ['.', '..']);
+
             foreach ($files as $file) {
-                self::removeDirectory($file);
+                self::removeDirectory(realpath($path) . '/' . $file);
             }
-            rmdir($path);
+
+            return rmdir($path);
+        } else if (is_file($path) === true) {
+            return unlink($path);
         }
     }
 }

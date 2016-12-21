@@ -11,6 +11,16 @@ class Updates
         $this->showUpdateNotices();
     }
 
+    static function array_filter($array, $function)
+    {
+        $result = [];
+        foreach ($array as $key => $value) {
+            if ($function($key, $value))
+                $result[$key] = $value;
+        }
+        return $result;
+    }
+
     function showUpdateNotices()
     {
         foreach (Plugins::updateAvailable() as $relativePath => $pluginData) {
