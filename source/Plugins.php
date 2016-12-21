@@ -19,6 +19,16 @@ class Plugins
         });
     }
 
+    static function relevant()
+    {
+        $all                 = get_plugins();
+        $activeRelativePaths = get_option('active_plugins');
+        $active              = array_intersect_key($all, array_flip($activeRelativePaths));
+        $withoutSelf         = self::excludeSelf($active);
+        $usesGit             = self::filterUsesGit($withoutSelf);
+        return $usesGit;
+    }
+
     static function excludeSelf($plugins)
     {
         return array_filter($plugins, function ($relativePath) {
@@ -26,13 +36,11 @@ class Plugins
         }, ARRAY_FILTER_USE_KEY);
     }
 
-    static function relevant()
+
+    static function filterUsesGit($plugins)
     {
-        $all                 = get_plugins();
-        $activeRelativePaths = get_option('active_plugins');
-        $active              = array_intersect_key($all, array_flip($activeRelativePaths));
-        $withoutSelf         = self::excludeSelf($active);
-        $usesGit             = Github::filterUsesGit($withoutSelf);
-        return $usesGit;
+        return array_filter($plugins, function ($plugin) {
+            return strpos($plugin['PluginURI'], 'github') !== false;
+        });
     }
 }

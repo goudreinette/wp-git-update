@@ -4,13 +4,6 @@ use Requests;
 
 class Github
 {
-    static function filterUsesGit($plugins)
-    {
-        return array_filter($plugins, function ($plugin) {
-            return strpos($plugin['PluginURI'], 'github') !== false;
-        });
-    }
-
     static function parseRepoUri($repo)
     {
         $exploded = array_reverse(explode('/', $repo));
