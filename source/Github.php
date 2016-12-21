@@ -20,24 +20,16 @@ class Github
         ];
     }
 
-    static function lastCommitsUri($user, $repo)
-    {
-        return "https://api.github.com/repos/$user/$repo/commits";
-    }
-
-    static function archiveUri($user, $repo)
-    {
-        return "https://github.com/$user/$repo/archive/master.zip";
-    }
-
     static function lastCommitHash($repo)
     {
-        $res = Requests::get(self::lastCommitsUri($repo['user'], $repo['repo']), ['Accept' => 'application/json']);
+        $lastCommitsUri = "https://api.github.com/repos/$repo[user]/$repo[repo]/commits";
+        $res            = Requests::get($lastCommitsUri, ['Accept' => 'application/json']);
         return json_decode($res->body, true)[0]['sha'];
     }
 
     static function downloadArchive($repo, $absolutePath)
     {
-        file_put_contents("$absolutePath.zip", fopen(self::archiveUri($repo['user'], $repo['repo']), 'r'));
+        $archiveUri = "https://github.com/$user/$repo/archive/master.zip";
+        file_put_contents("$absolutePath.zip", fopen($archiveUri, 'r'));
     }
 }
