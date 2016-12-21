@@ -4,46 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fe9436f15f0194622caad0c50da2f33c",
-    "content-hash": "0422db12bff156358b7591415fe35900",
+    "hash": "f32b3f73987845bddc4de6969b718909",
+    "content-hash": "ba9473530fda86f145a6cc8cbba70aa7",
     "packages": [
-        {
-            "name": "bookin/composer-api",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bookin/composer-api.git",
-                "reference": "461adac1093dfe675a0318c22e1d4b365d9ad4a1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bookin/composer-api/zipball/461adac1093dfe675a0318c22e1d4b365d9ad4a1",
-                "reference": "461adac1093dfe675a0318c22e1d4b365d9ad4a1",
-                "shasum": ""
-            },
-            "require": {
-                "composer/composer": "*",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "bookin\\composer\\api\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Anton Mikhailov",
-                    "email": "issues.bookin@gmail.com"
-                }
-            ],
-            "description": "Pack of functions for interfacing with composer",
-            "time": "2016-08-20 22:42:10"
-        },
         {
             "name": "composer/ca-bundle",
             "version": "1.0.6",
@@ -369,38 +332,6 @@
             "time": "2016-06-02 10:59:52"
         },
         {
-            "name": "kabachello/composerapi",
-            "version": "0.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kabachello/ComposerAPI.git",
-                "reference": "d615f5733984281aa1e5af0a50ab69e4811a2ac5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kabachello/ComposerAPI/zipball/d615f5733984281aa1e5af0a50ab69e4811a2ac5",
-                "reference": "d615f5733984281aa1e5af0a50ab69e4811a2ac5",
-                "shasum": ""
-            },
-            "require": {
-                "composer/composer": "^1.0"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andrej Kabachnik",
-                    "email": "kabachnik@gmail.com",
-                    "role": "Creator"
-                }
-            ],
-            "description": "A wrapper for Composer to call its commands programmatically using a simple object oriented API",
-            "time": "2016-10-14 16:27:24"
-        },
-        {
             "name": "mustache/mustache",
             "version": "v2.11.1",
             "source": {
@@ -499,12 +430,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/reinvdwoerd/php-utils.git",
-                "reference": "00af1b6fd32e8be2080b64235ad47f28350d49c2"
+                "reference": "29d255653b7eee9ebac7459ec716bcffc0bd44a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reinvdwoerd/php-utils/zipball/00af1b6fd32e8be2080b64235ad47f28350d49c2",
-                "reference": "00af1b6fd32e8be2080b64235ad47f28350d49c2",
+                "url": "https://api.github.com/repos/reinvdwoerd/php-utils/zipball/29d255653b7eee9ebac7459ec716bcffc0bd44a7",
+                "reference": "29d255653b7eee9ebac7459ec716bcffc0bd44a7",
                 "shasum": ""
             },
             "type": "library",
@@ -520,7 +451,7 @@
                     "email": "reinvanderwoerd@me.com"
                 }
             ],
-            "time": "2016-12-20 15:35:49"
+            "time": "2016-12-21 14:04:54"
         },
         {
             "name": "rmccue/requests",
@@ -1040,8 +971,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "reinvdwoerd/utils": 20,
-        "bookin/composer-api": 20
+        "reinvdwoerd/utils": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

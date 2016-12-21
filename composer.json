@@ -11,8 +11,7 @@
     "mustache/mustache": "2.*.*",
     "reinvdwoerd/utils": "dev-master",
     "rmccue/requests": "^1.7",
-    "composer/composer": "^1.2",
-    "bookin/composer-api": "@dev"
+    "composer/composer": "^1.2"
   },
   "autoload": {
     "psr-4": {
