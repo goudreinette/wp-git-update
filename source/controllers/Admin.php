@@ -1,22 +1,20 @@
 <?php namespace GitUpdate;
 
-use Utils\View;
+use Utils\PluginContext;
 
 class Admin
 {
     /**
-     * @var Updates
+     * @var PluginContext
      */
-    private $updates;
+    public $context;
+    /**
+     * @var \Utils\View
+     */
+    public $view;
 
-    function connect($updates)
+    function __construct()
     {
-        $this->updates = $updates;
-    }
-
-    function __construct(View $view)
-    {
-        $this->view = $view;
         add_action('admin_post_git_update', [$this, 'updateNow']);
     }
 
@@ -40,7 +38,7 @@ class Admin
      */
     function updateNow()
     {
-        $this->updates->update($_POST['repoUri'], $_POST['relativePath']);
+        $this->context->controllers->update($_POST['repoUri'], $_POST['relativePath']);
         wp_redirect(admin_url());
     }
 }

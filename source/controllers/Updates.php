@@ -1,14 +1,26 @@
 <?php namespace GitUpdate;
 
 
+use Utils\PluginContext;
+
 class Updates
 {
-    function __construct(Admin $admin)
+    /**
+     * @var PluginContext
+     */
+    public $context;
+
+    function __construct()
     {
-        $this->admin = $admin;
-        $this->admin->connect($this);
+        add_action('admin_init', [$this, 'init']);
+    }
+
+    function init()
+    {
+
         $this->setInitialCommitHash();
         $this->showUpdateNotices();
+
     }
 
     static function array_filter($array, $function)
@@ -24,7 +36,7 @@ class Updates
     function showUpdateNotices()
     {
         foreach (Plugins::updateAvailable() as $relativePath => $pluginData) {
-            $this->admin->showNotice($relativePath, $pluginData);
+            $this->context->controllers->admin->showNotice($relativePath, $pluginData);
         }
     }
 

@@ -12,46 +12,20 @@ Text Domain: git-update
 */
 
 /**
- * Directory
- */
-$root = plugin_dir_url(__FILE__);
-$path = plugin_dir_path(__FILE__);
-
-
-/**
  * Autoload
+ *  if (!is_ajax()) {
+ * $admin   = new Admin($view);
+ * $updates = new Updates($admin);
+ * }
  */
+
 require __DIR__ . '/vendor/autoload.php';
 
+use Utils\PluginContext;
 
-/**
- * View
- */
-use Utils\View;
+class GitUpdate extends PluginContext
+{
+    public $base = 'git-update';
+}
 
-$view = new View($root);
-
-
-/**
- * Run on init
- */
-add_action('init', function () {
-
-});
-
-add_action('admin_init', function () use ($view) {
-    /**
-     * Only activate during a regular admin request.
-     */
-    if (!is_ajax()) {
-        $admin   = new Admin($view);
-        $updates = new Updates($admin);
-    }
-});
-
-/**
- * Translations
- */
-add_action('plugins_loaded', function () {
-    load_plugin_textdomain('git-update', false, dirname(plugin_basename(__FILE__)));
-});
+new GitUpdate();
