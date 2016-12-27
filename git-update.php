@@ -11,13 +11,6 @@ License: -
 Text Domain: git-update
 */
 
-/**
- * Autoload
- *  if (!is_ajax()) {
- * $admin   = new Admin($view);
- * $updates = new Updates($admin);
- * }
- */
 
 require __DIR__ . '/vendor/autoload.php';
 
