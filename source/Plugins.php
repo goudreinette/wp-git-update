@@ -33,7 +33,7 @@ class Plugins
 
     static function excludeSelf($plugins)
     {
-        return Updates::array_filter($plugins, function ($relativePath, $pluginData) {
+        return Utils::array_filter($plugins, function ($relativePath, $pluginData) {
             return strpos($relativePath, 'git-update') === false;
         });
     }
