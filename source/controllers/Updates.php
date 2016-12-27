@@ -17,8 +17,10 @@ class Updates
 
     function init()
     {
-        $this->setInitialCommitHash();
-        $this->showUpdateNotices();
+        if (!is_ajax()) {
+            $this->setInitialCommitHash();
+            $this->showUpdateNotices();
+        }
     }
 
     static function array_filter($array, $function)
