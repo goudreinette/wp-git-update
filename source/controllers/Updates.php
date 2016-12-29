@@ -22,7 +22,7 @@ class Updates
             $this->showUpdateNotices();
         }
     }
-    
+
     function showUpdateNotices()
     {
         foreach (Plugins::updateAvailable() as $relativePath => $pluginData) {
