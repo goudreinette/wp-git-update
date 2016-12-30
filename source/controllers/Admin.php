@@ -40,5 +40,6 @@ class Admin
     {
         $this->context->controllers->updates->update($_POST['repoUri'], $_POST['relativePath']);
         wp_redirect(admin_url());
+        exit;
     }
 }
