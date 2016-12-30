@@ -45,10 +45,11 @@ class Updates
         $lastCommitHash = Github::lastCommitHash($repo);
         $absolutePath   = Files::pluginAbsDir($relativePath);
         $composer       = new ComposerAPI("$absolutePath-master");
-
+        
         Github::downloadArchive($repo, $absolutePath);
         Files::extract($absolutePath);
         $composer->install();
+        $composer->update();
         Files::cleanup($absolutePath);
         LastUpdate::set($relativePath, $lastCommitHash);
     }

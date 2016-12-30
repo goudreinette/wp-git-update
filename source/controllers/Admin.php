@@ -38,7 +38,7 @@ class Admin
      */
     function updateNow()
     {
-        $this->context->controllers->update($_POST['repoUri'], $_POST['relativePath']);
+        $this->context->controllers->updates->update($_POST['repoUri'], $_POST['relativePath']);
         wp_redirect(admin_url());
     }
 }
